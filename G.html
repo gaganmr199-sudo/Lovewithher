@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Valentine ❤️</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Segoe UI;}
+
+body{
+  height:100vh;
+  background:url("bg.jpg") no-repeat center/cover;
+  overflow:hidden;
+}
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,0.65);
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  text-align:center;
+}
+
+.screen{
+  display:none;
+  animation:fade 1.5s;
+}
+
+.screen.active{display:block;}
+
+h1{font-size:40px;}
+h2{margin:15px 0;}
+
+button{
+  padding:12px 35px;
+  border:none;
+  border-radius:30px;
+  font-size:18px;
+  background:crimson;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:hover{
+  background:deeppink;
+  transform:scale(1.05);
+}
+
+.photo{
+  width:230px;
+  height:230px;
+  border-radius:50%;
+  object-fit:cover;
+  border:6px solid white;
+  margin-bottom:15px;
+}
+
+.letter{
+  background:white;
+  color:#333;
+  padding:20px;
+  border-radius:15px;
+  max-width:420px;
+  margin:auto;
+  line-height:1.6;
+}
+
+@keyframes fade{
+  from{opacity:0;transform:scale(0.8);}
+  to{opacity:1;}
+}
+
+/* Falling hearts */
+.heart{
+  position:absolute;
+  top:-30px;
+  color:pink;
+  font-size:20px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  from{transform:translateY(0);}
+  to{transform:translateY(120vh);}
+}
+</style>
+</head>
+
+<body>
+
+<audio id="song" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="overlay">
+
+  <!-- Screen 1 -->
+  <div class="screen active" id="s1">
+    <h1>Happy Valentine Day ❤️</h1><br>
+    <p>I made something just for you</p><br><br>
+    <button onclick="openGift()">Open Your Gift 🎁</button>
+  </div>
+
+  <!-- Screen 2 -->
+  <div class="screen" id="s2">
+    <img src="bg.jpg" class="photo">
+    <h2>Hey Gurleen 💌</h2>
+
+    <div class="letter">
+      This Valentine’s Day, I promise you from my heart.<br><br>
+
+      I will always try to make you happy,<br>
+      stand with you in every situation,<br>
+      support you in every dream,<br>
+      and choose you every single day.<br><br>
+
+      You are not just my Valentine,<br>
+      you are my forever feeling ❤️
+    </div>
+  </div>
+
+</div>
+
+<script>
+function openGift(){
+  document.getElementById("s1").classList.remove("active");
+  document.getElementById("s2").classList.add("active");
+  document.getElementById("song").play();
+}
+
+/* Continuous falling hearts */
+setInterval(()=>{
+  let h=document.createElement("div");
+  h.className="heart";
+  h.innerHTML="❤️";
+  h.style.left=Math.random()*100+"vw";
+  h.style.fontSize=(15+Math.random()*25)+"px";
+  h.style.animationDuration=(6+Math.random()*6)+"s";
+  document.body.appendChild(h);
+
+  setTimeout(()=>{h.remove();},12000);
+},400);
+</script>
+
+</body>
+</html>
